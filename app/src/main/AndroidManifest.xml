@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.xuqunxing.test" >
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.write_external_storage"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+
+    <application
+        android:name=".BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/zhihu"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".ui.SplashActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.MainActivity" ></activity>
+        <activity android:name=".ui.NewsDetailActivity" android:theme="@style/AppTheme.TransparentActivity" ></activity>
+        <activity android:name=".ui.LeftMenuDetailActivity" android:theme="@style/AppTheme.TransparentActivity" ></activity>
+
+
+        <!--友盟统计-->
+        <meta-data android:value="57047c6ce0f55a7e6e0000b2" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="zhihuyuedu" android:name="UMENG_CHANNEL"/>
+
+        <!--友盟推送-->
+        <meta-data
+            android:name="UMENG_APPKEY" android:value="57047c6ce0f55a7e6e0000b2" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"  android:value="b4ca461aec44340163cc0a515063aee2" >
+        </meta-data>
+    </application>
+
+</manifest>

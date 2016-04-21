@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">知乎阅读</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="net_wrong">网络异常</string>
+</resources>

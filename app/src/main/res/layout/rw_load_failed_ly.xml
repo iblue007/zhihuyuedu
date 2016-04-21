@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/rw_search_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+    android:background="#384b5e">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/rw_none_search"/>
+        <com.example.xuqunxing.test.view.StrokeTextView
+            style="@style/rw_none_text"
+            android:text="对不起没有找到你要的内容" />
+    </LinearLayout>
