@@ -34,5 +34,5 @@ public abstract class ParseJsonCallBack<T> extends BaseCallback<T>{
         return t;
     }
     public abstract void LoadData(String url);
-
+    public abstract void LoadData(int page,String url);
 }

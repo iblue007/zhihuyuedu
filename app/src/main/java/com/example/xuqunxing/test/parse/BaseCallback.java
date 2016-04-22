@@ -20,4 +20,9 @@ public abstract class BaseCallback<T> implements IMenuDetailFragment {
     public void showError() {
 
     }
+
+    @Override
+    public void onLoadMoreSueecee(Object obj) {
+
+    }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+        android:padding="10dp" >
+
+        <com.example.xuqunxing.test.view.ProgressBarCircularIndeterminate
+            android:id="@+id/load_ing_pb"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerInParent="true"
+            android:background="@color/swipe_refresh_foot_color" />
+
+        <RelativeLayout
+            android:id="@+id/ripple"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/load_empty_tv"
+                android:layout_width="fill_parent"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:singleLine="true"  />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/load_complete_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:visibility="gone"  />
+    </RelativeLayout>
+
+</LinearLayout>

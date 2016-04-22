@@ -25,4 +25,18 @@ public abstract class BasePresenter<T> extends ParseJsonCallBack<T>  {
         });
     }
 
+    @Override
+    public void LoadData(int page, String url) {
+        loadDataBiz.loadDataByGet(url, new IUIDataListener() {
+            @Override
+            public void uiDataSuccess(Object obj) {
+                onLoadMoreSueecee(obj);
+            }
+
+            @Override
+            public void uiDataError() {
+                showError();
+            }
+        });
+    }
 }

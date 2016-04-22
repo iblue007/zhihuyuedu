@@ -90,4 +90,9 @@ public class MenuFragment4Datail extends BaseFragment implements IMenuDetailFrag
     public void showError() {
 
     }
+
+    @Override
+    public void onLoadMoreSueecee(Object obj) {
+
+    }
 }

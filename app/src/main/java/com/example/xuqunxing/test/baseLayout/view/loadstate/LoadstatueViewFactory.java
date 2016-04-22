@@ -4,15 +4,54 @@ import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.xuqunxing.test.R;
+import com.example.xuqunxing.test.adapter.BasicAdapter;
+import com.example.xuqunxing.test.baseLayout.fragment.inf.ILoadFragmengState;
+import com.example.xuqunxing.test.loadview.inf.ILoadResult;
 
 /**
  * 视图工厂 <br>
  */
 public class LoadstatueViewFactory {
+
+    /**
+     * 页面加载结果处理(不下拉刷新)
+     */
+    public static void loadSuccess(Adapter adapter,
+                                   //PageInfo info,
+                                   ILoadResult iLoadViewState, ILoadFragmengState iLoadState) {
+        if (adapter == null || adapter.getCount() == 0) {
+            iLoadState.onLoadEmpty();
+            return;
+        }
+        iLoadState.onLoadSuccess();
+        iLoadViewState.onLoadSuccess();
+
+//        if (info.getIsLastPage() == 1) {
+//            iLoadViewState.onLoadComplete();
+//        }
+    }
+
+    /**
+     * 页面加载结果处理(不下拉刷新)
+     */
+    public static void loadIsFailed(BasicAdapter adapter,
+                                    //PageInfo info,
+                                    ILoadResult iLoadViewState, ILoadFragmengState iLoadState) {
+        if (adapter == null || adapter.getCount() == 0) {
+            iLoadState.onLoadFailed();
+            return;
+        }
+        iLoadState.onLoadSuccess();
+        iLoadViewState.onLoadFailed();
+//        if (info.getIsLastPage() == 1) {
+//            iLoadViewState.onLoadComplete();
+//        }
+    }
 
     /**
      * 添加视图

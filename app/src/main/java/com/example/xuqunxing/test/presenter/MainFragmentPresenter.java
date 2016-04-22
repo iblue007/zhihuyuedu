@@ -17,6 +17,7 @@ public class MainFragmentPresenter extends BasePresenter<MainFragmentBean>{
 //        loadDataBiz=new LoadDataBiz();
     }
 
+
 //    @Override
 //    public void LoadData(String url) {
 //        loadDataBiz.loadDataByGet(url, new IUIDataListener() {
@@ -46,6 +47,23 @@ public class MainFragmentPresenter extends BasePresenter<MainFragmentBean>{
 //        });
 //    }
 
+
+    @Override
+    public void onLoadMoreSueecee(Object obj) {
+        try {
+            String json = new String(((String) obj).getBytes("utf-8"), "utf-8");
+            //缓存数据
+            if(json!=null){
+                Util.save2Local(json, Util.getSimpleClassName(getClass().getName()), "LoadData");
+            }else{
+                // Util.save2Local(json,Util.getSimpleClassName(getClass().getName())+"/"+UserInfoManager.getInstance().getUserId(),mTeamId+"_"+1);
+            }
+            MainFragmentBean MainFragmentBean = parseNetworkResponse4Str(json);
+            iMainFragment.onLoadMoreSueecee(MainFragmentBean);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void onSuccessView(Object obj) {

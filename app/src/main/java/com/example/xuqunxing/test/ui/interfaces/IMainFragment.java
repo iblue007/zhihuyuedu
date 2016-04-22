@@ -7,4 +7,5 @@ public interface IMainFragment {
 
     void onSuccessView(Object obj);
     void showError();
+    void onLoadMoreSueecee(Object obj);
 }
