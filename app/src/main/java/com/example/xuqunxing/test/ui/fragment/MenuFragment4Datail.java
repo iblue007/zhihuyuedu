@@ -94,11 +94,9 @@ public class MenuFragment4Datail extends BaseFragment implements IMenuDetailFrag
 
     @Override
     public void showError() {
-
     }
 
     @Override
     public void onLoadMoreSueecee(Object obj) {
-
     }
 }
