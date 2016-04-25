@@ -63,7 +63,10 @@ public class MenuFragment extends BasicLoadstateHttpFragment implements View.OnC
         if(Util.isNetworkAvailable(getContext())){
             leftMenuPresenter.LoadData(Constant.THEMES);
         }else{
-            onLoadEmpty();
+//            onLoadEmpty();
+            if(leftMenuPresenter!=null){
+                leftMenuPresenter.LoadLoaclData();
+            }
         }
 
     }

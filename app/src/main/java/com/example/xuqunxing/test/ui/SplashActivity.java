@@ -49,14 +49,22 @@ public class SplashActivity extends Activity implements Isplash{
 
     @Override
     public void onSuccessView(Object obj) {
-        final SplashBean splashBean=(SplashBean)obj;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Bitmap bitmap = BitmapUtil.returnBitmap(splashBean.img);
-                BitmapUtil.saveImage(imgFile, BitmapUtil.Bitmap2Bytes(bitmap));
-            }
-        }).start();
+        try{
+            final SplashBean splashBean=(SplashBean)obj;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Bitmap bitmap = BitmapUtil.returnBitmap(splashBean.img);
+                    try{
+                        BitmapUtil.saveImage(imgFile, BitmapUtil.Bitmap2Bytes(bitmap));
+                    }catch (Exception  e){
+
+                    }
+                }
+            }).start();
+        }catch (Exception e){
+
+        }
 //        Glide.with(this).load(splashBean.img).fitCenter().into(start);
     }
 

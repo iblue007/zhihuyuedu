@@ -67,4 +67,18 @@ public class LeftMenuDetailActivityPresenter extends BasePresenter<NewsDetailBea
     public void showError() {
         iLeftMenuDetailActivity.onFailView();
     }
+
+    public void loadLocalData() {
+        String json=Util.readDataFromLocal( Util.getSimpleClassName(getClass().getName()), "LoadData");
+        if(json!=null){
+            try{
+                NewsDetailBean NewsDetailBean = parseNetworkResponse4Str(json);
+                iLeftMenuDetailActivity.onSuccessView(NewsDetailBean);
+            }catch (Exception e){
+                iLeftMenuDetailActivity.onFailView();
+            }
+        }else{
+            iLeftMenuDetailActivity.onFailView();
+        }
+    }
 }

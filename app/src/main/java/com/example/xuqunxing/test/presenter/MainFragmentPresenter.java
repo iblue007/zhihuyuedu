@@ -1,6 +1,7 @@
 package com.example.xuqunxing.test.presenter;
 
 import com.example.xuqunxing.test.bean.MainFragmentBean;
+import com.example.xuqunxing.test.interfacess.IUIDataListener;
 import com.example.xuqunxing.test.ui.interfaces.IMainFragment;
 import com.example.xuqunxing.test.util.Util;
 
@@ -18,35 +19,48 @@ public class MainFragmentPresenter extends BasePresenter<MainFragmentBean>{
     }
 
 
-//    @Override
-//    public void LoadData(String url) {
-//        loadDataBiz.loadDataByGet(url, new IUIDataListener() {
-//            @Override
-//            public void uiDataSuccess(Object obj) {
-////                String json=(String) obj;
-//            try {
-//                String json = new String(((String) obj).getBytes("utf-8"), "utf-8");
-//                    //缓存数据
-//                    if(json!=null){
-//                        Util.save2Local(json, Util.getSimpleClassName(getClass().getName()),"LoadData");
-//                    }else{
-//                       // Util.save2Local(json,Util.getSimpleClassName(getClass().getName())+"/"+UserInfoManager.getInstance().getUserId(),mTeamId+"_"+1);
-//                    }
-//
-//                    MainFragmentBean mainFragmentBean = parseNetworkResponse4Str(json);
-//                    iMainFragment.onSuccessView(mainFragmentBean);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void uiDataError() {
-//                iMainFragment.showError();
-//            }
-//        });
-//    }
+    @Override
+    public void LoadData(String url) {
+        loadDataBiz.loadDataByGet(url, new IUIDataListener() {
+            @Override
+            public void uiDataSuccess(Object obj) {
+//                String json=(String) obj;
+            try {
+                String json = new String(((String) obj).getBytes("utf-8"), "utf-8");
+                    //缓存数据
+                    if(json!=null){
+                        Util.save2Local(json, Util.getSimpleClassName(getClass().getName()),"LoadData");
+                    }else{
+                       // Util.save2Local(json,Util.getSimpleClassName(getClass().getName())+"/"+UserInfoManager.getInstance().getUserId(),mTeamId+"_"+1);
+                    }
 
+                    MainFragmentBean mainFragmentBean = parseNetworkResponse4Str(json);
+                    iMainFragment.onSuccessView(mainFragmentBean);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void uiDataError() {
+                iMainFragment.showError();
+            }
+        });
+    }
+
+    public void loadLocalData() {
+        try{
+            String json=Util.readDataFromLocal(Util.getSimpleClassName(getClass().getName()),"LoadData");
+            if(json!=null){
+                MainFragmentBean mainFragmentBean = parseNetworkResponse4Str(json);
+                iMainFragment.onSuccessView(mainFragmentBean);
+            }else{
+                iMainFragment.showError();
+            }
+        }catch (Exception e){
+            iMainFragment.showError();
+        }
+    }
 
     @Override
     public void onLoadMoreSueecee(Object obj) {
@@ -87,4 +101,5 @@ public class MainFragmentPresenter extends BasePresenter<MainFragmentBean>{
     public void showError() {
         iMainFragment.showError();
     }
+
 }

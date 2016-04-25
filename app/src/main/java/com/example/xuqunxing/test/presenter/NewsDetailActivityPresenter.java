@@ -49,4 +49,20 @@ public class NewsDetailActivityPresenter extends BasePresenter<NewsDetailBean>{
     public void setDataId(long id1) {
         id=id1;
     }
+
+    public void loadLocalData() {
+        String json = Util.readDataFromLocal(Util.getSimpleClassName(getClass().getName()), id + "");
+        //缓存数据
+        if(json!=null){
+            try{
+                NewsDetailBean newsDetailBean = parseNetworkResponse4Str(json);
+                iNewsDetailActivity.onSuccessView(newsDetailBean);
+            }catch (Exception e){
+                iNewsDetailActivity.onFailView();
+            }
+        }else{
+            iNewsDetailActivity.onFailView();
+        }
+
+    }
 }

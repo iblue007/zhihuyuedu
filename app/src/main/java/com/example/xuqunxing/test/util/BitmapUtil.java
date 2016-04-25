@@ -23,17 +23,12 @@ public class BitmapUtil {
              return baos.toByteArray();
          }
 
-     public static void saveImage(File file, byte[] bytes) {
-        try {
+     public static void saveImage(File file, byte[] bytes) throws Exception{
             file.delete();
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(bytes);
             fos.flush();
             fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
      }
 
     /**

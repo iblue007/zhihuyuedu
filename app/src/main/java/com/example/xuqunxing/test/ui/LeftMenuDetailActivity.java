@@ -15,6 +15,7 @@ import com.example.xuqunxing.test.bean.StoriesBean;
 import com.example.xuqunxing.test.presenter.LeftMenuDetailActivityPresenter;
 import com.example.xuqunxing.test.ui.interfaces.ILeftMenuDetailActivity;
 import com.example.xuqunxing.test.util.Constant;
+import com.example.xuqunxing.test.util.Util;
 import com.example.xuqunxing.test.view.RevealBackgroundView;
 
 /**侧拉详情activity
@@ -120,7 +121,12 @@ public class LeftMenuDetailActivity extends BasicLoadstateHttpActivity implement
 
     @Override
     public void loadData() {
-        leftMenuDetailActivityPresenter.LoadData(Constant.CONTENT + entity.id);
+        if(Util.isNetworkAvailable(mContext)){
+            leftMenuDetailActivityPresenter.LoadData(Constant.CONTENT + entity.id);
+        }else{
+            leftMenuDetailActivityPresenter.loadLocalData();
+        }
+
     }
 
     @Override

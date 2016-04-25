@@ -21,6 +21,7 @@ import com.example.xuqunxing.test.manager.UMManager;
 import com.example.xuqunxing.test.presenter.NewsDetailActivityPresenter;
 import com.example.xuqunxing.test.ui.interfaces.INewsDetailActivity;
 import com.example.xuqunxing.test.util.Constant;
+import com.example.xuqunxing.test.util.Util;
 import com.example.xuqunxing.test.view.RevealBackgroundView;
 import com.umeng.analytics.MobclickAgent;
 
@@ -82,7 +83,11 @@ public class NewsDetailActivity extends BasicLoadstateHttpActivity implements Re
     @Override
     public void loadData() {
         newsDetailActivityPresenter.setDataId(entity.id);
-        newsDetailActivityPresenter.LoadData(Constant.CONTENT + entity.id);
+        if(Util.isNetworkAvailable(mContext)){
+            newsDetailActivityPresenter.LoadData(Constant.CONTENT + entity.id);
+        }else{
+            newsDetailActivityPresenter.loadLocalData();
+        }
     }
 
     @Override

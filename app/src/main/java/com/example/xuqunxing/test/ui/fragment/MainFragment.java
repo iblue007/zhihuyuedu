@@ -81,7 +81,11 @@ public class MainFragment extends BasicLoadstateHttpFragment implements IMainFra
             mainFragmentPresenter=new MainFragmentPresenter(this);
             mainFragmentPresenter.LoadData(Constant.LATESTNEWS);
         }else{
-            onLoadEmpty();
+            if(mainFragmentPresenter==null){
+                mainFragmentPresenter=new MainFragmentPresenter(this);
+            }
+            mainFragmentPresenter.loadLocalData();
+           // onLoadEmpty();
             //ToastUtils.showToast(getContext(),R.string.net_wrong);
         }
 

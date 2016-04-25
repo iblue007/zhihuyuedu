@@ -38,6 +38,20 @@ public class LeftMenuPresenter extends BasePresenter<LeftMenuBean> {
 //        });
 //    }
 
+    public void LoadLoaclData() {
+        String json=Util.readDataFromLocal(Util.getSimpleClassName(getClass().getName()), "LoadData");
+        if(json!=null){
+            try{
+                LeftMenuBean LeftMenuBean = parseNetworkResponse4Str(json);
+                iMenuFragment.onSuccessView(LeftMenuBean);
+            }catch (Exception e){
+                iMenuFragment.showError();
+            }
+        }else{
+            iMenuFragment.showError();
+        }
+    }
+
     @Override
     public void onSuccessView(Object obj) {
         try {
@@ -60,4 +74,6 @@ public class LeftMenuPresenter extends BasePresenter<LeftMenuBean> {
     public void showError() {
         iMenuFragment.showError();
     }
+
+
 }
