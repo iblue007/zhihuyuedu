@@ -10,7 +10,7 @@ public abstract class LoadStateHttpFragment extends LoadStateFragment implements
     @Override
     public boolean firstdata() {
         onLoadStart();
-        loadData(1);
+        loadData();
         return true;
     }
 }

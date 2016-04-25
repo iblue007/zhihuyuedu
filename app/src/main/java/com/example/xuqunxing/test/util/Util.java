@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -35,6 +36,28 @@ public class Util {
 
 	private static BufferedWriter bw;
 
+
+
+	/**
+	 * 检测当的网络（WLAN、3G/2G）状态
+	 * @param context Context
+	 * @return true 表示网络可用
+	 */
+	public static boolean isNetworkAvailable(Context context) {
+
+		boolean flag = false;
+
+		ConnectivityManager cwjManager = (ConnectivityManager) context    // 获取实例
+
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		if (cwjManager.getActiveNetworkInfo() != null) {
+
+			flag = cwjManager.getActiveNetworkInfo().isAvailable();    // 检测是否联网
+
+		}
+		return flag;
+	}
 
 	/**
 	 * Convert Dp to Pixel

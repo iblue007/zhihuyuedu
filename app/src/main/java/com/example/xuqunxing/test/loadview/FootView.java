@@ -60,6 +60,9 @@ public class FootView extends BaseFootView{
         public void onClick(View v) {
             if (v.getId() == mLoadEmptyTv.getId()) {
                 if (mCallBack != null) {
+                    mloadingPb.setVisibility(View.VISIBLE);
+                    mLoadCompTv.setVisibility(View.GONE);
+                    mLoadEmptyTv.setVisibility(View.GONE);
                     mCallBack.onUpLoad();
                 }
             }
@@ -68,7 +71,7 @@ public class FootView extends BaseFootView{
 
     @Override
     public void onLoadFailed() {
-        dispathShowView(mloadingPb);
+        dispathShowView(mLoadEmptyTv);
     }
 
     @Override
@@ -114,6 +117,7 @@ public class FootView extends BaseFootView{
             mloadingPb.setVisibility(View.GONE);
             mLoadCompTv.setVisibility(View.GONE);
             mLoadEmptyTv.setVisibility(View.VISIBLE);
+            mLoadEmptyTv.setText("获取内容失败");
             return;
         }
     }

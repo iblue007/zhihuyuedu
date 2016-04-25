@@ -16,6 +16,7 @@ import com.example.xuqunxing.test.presenter.SplashPresenter;
 import com.example.xuqunxing.test.ui.interfaces.Isplash;
 import com.example.xuqunxing.test.util.BitmapUtil;
 import com.example.xuqunxing.test.util.Constant;
+import com.example.xuqunxing.test.util.Util;
 import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
@@ -39,7 +40,11 @@ public class SplashActivity extends Activity implements Isplash{
     }
 
     private void loadData() {
-        splashPresenter.LoadData(Constant.START);
+        if(Util.isNetworkAvailable(SplashActivity.this)){
+            splashPresenter.LoadData(Constant.START);
+        }else{
+            toNewActivity();
+        }
     }
 
     @Override

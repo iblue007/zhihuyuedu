@@ -25,6 +25,7 @@ import com.example.xuqunxing.test.ui.NewsDetailActivity;
 import com.example.xuqunxing.test.ui.interfaces.IMainFragment;
 import com.example.xuqunxing.test.util.Constant;
 import com.example.xuqunxing.test.util.ToastUtils;
+import com.example.xuqunxing.test.util.Util;
 import com.example.xuqunxing.test.view.MainFragmentHeadView;
 
 /**主页fragment
@@ -32,23 +33,23 @@ import com.example.xuqunxing.test.view.MainFragmentHeadView;
  */
 public class MainFragment extends BasicLoadstateHttpFragment implements IMainFragment {
 
-    private ListView listView;
-    private MainFragmentPresenter mainFragmentPresenter;
-    private ReDefaultSwipeRefreshLayout swipeRefreshLayout;
-    private MainFragmentHeadView headView;
-    private MainFragmentAdapter adapter;
+            private ListView listView;
+            private MainFragmentPresenter mainFragmentPresenter;
+            private ReDefaultSwipeRefreshLayout swipeRefreshLayout;
+            private MainFragmentHeadView headView;
+            private MainFragmentAdapter adapter;
 
-    @Override
-    public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=View.inflate(mContext, R.layout.fragment_main, null);
-        try{
-           ((MainActivity) mContext).setToolbarTitle("今日热闻");
-           swipeRefreshLayout = (ReDefaultSwipeRefreshLayout) view.findViewById(R.id.comm_swipe_refresh_ly);
-           swipeRefreshLayout.init(view);
-           listView=swipeRefreshLayout.getmListView();
-           headView = new MainFragmentHeadView(mContext);
-           listView.addHeaderView(headView);
-       }catch (Exception e){
+            @Override
+            public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                View view=View.inflate(mContext, R.layout.fragment_main, null);
+                try{
+                    ((MainActivity) mContext).setToolbarTitle("今日热闻");
+                    swipeRefreshLayout = (ReDefaultSwipeRefreshLayout) view.findViewById(R.id.comm_swipe_refresh_ly);
+                    swipeRefreshLayout.init(view);
+                    listView=swipeRefreshLayout.getmListView();
+                    headView = new MainFragmentHeadView(mContext);
+                    listView.addHeaderView(headView);
+                }catch (Exception e){
             Log.i("Exception","Exception");
        }
         return view;
@@ -56,7 +57,7 @@ public class MainFragment extends BasicLoadstateHttpFragment implements IMainFra
 
     @Override
     public void initDataAfterView() {
-        loadData();
+        firstdata();
     }
 
     @Override
@@ -76,13 +77,26 @@ public class MainFragment extends BasicLoadstateHttpFragment implements IMainFra
 
     @Override
     public void loadData() {
-        mainFragmentPresenter=new MainFragmentPresenter(this);
-        mainFragmentPresenter.LoadData(Constant.LATESTNEWS);
+        if(Util.isNetworkAvailable(getContext())){
+            mainFragmentPresenter=new MainFragmentPresenter(this);
+            mainFragmentPresenter.LoadData(Constant.LATESTNEWS);
+        }else{
+            onLoadEmpty();
+            //ToastUtils.showToast(getContext(),R.string.net_wrong);
+        }
+
     }
 
     @Override
     public void loadData(int page) {
-        mainFragmentPresenter.LoadData(page,Constant.LATESTNEWS);
+        if(Util.isNetworkAvailable(getContext())){
+            mainFragmentPresenter.LoadData(page,Constant.LATESTNEWS);
+        }else{
+            ToastUtils.showToast(getContext(), R.string.net_wrong);
+            swipeRefreshLayout.onLoadFailed();
+            //    LoadstatueViewFactory.loadIsFailed(adapter, swipeRefreshLayout, this);
+        }
+
     }
 
     @Override

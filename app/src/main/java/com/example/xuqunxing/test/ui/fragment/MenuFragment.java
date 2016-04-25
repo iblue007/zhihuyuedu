@@ -18,6 +18,7 @@ import com.example.xuqunxing.test.presenter.LeftMenuPresenter;
 import com.example.xuqunxing.test.ui.MainActivity;
 import com.example.xuqunxing.test.ui.interfaces.IMenuFragment;
 import com.example.xuqunxing.test.util.Constant;
+import com.example.xuqunxing.test.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,12 +60,21 @@ public class MenuFragment extends BasicLoadstateHttpFragment implements View.OnC
 
     @Override
     public void loadData() {
-        leftMenuPresenter.LoadData(Constant.THEMES);
+        if(Util.isNetworkAvailable(getContext())){
+            leftMenuPresenter.LoadData(Constant.THEMES);
+        }else{
+            onLoadEmpty();
+        }
+
     }
 
     @Override
     public void loadData(int page) {
-        leftMenuPresenter.LoadData(Constant.THEMES);
+        if(Util.isNetworkAvailable(getContext())){
+            leftMenuPresenter.LoadData(Constant.THEMES);
+        }else{
+            onLoadEmpty();
+        }
     }
 
     @Override
