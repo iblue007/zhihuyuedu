@@ -21,6 +21,7 @@ import com.example.xuqunxing.test.ui.LeftMenuDetailActivity;
 import com.example.xuqunxing.test.ui.MainActivity;
 import com.example.xuqunxing.test.ui.interfaces.IMenuDetailFragment;
 import com.example.xuqunxing.test.util.Constant;
+import com.example.xuqunxing.test.util.Util;
 
 /**侧拉框的详情
  * Created by xuqunxing on 2016/4/7.
@@ -55,7 +56,12 @@ public class MenuFragment4Datail extends BaseFragment implements IMenuDetailFrag
     @Override
     protected void initData() {
         super.initData();
-        leftMenuDatailPresenter.LoadData(Constant.THEMENEWS+urlId);
+        leftMenuDatailPresenter.setUrlId(urlId);
+        if(Util.isNetworkAvailable(mContext)){
+            leftMenuDatailPresenter.LoadData(Constant.THEMENEWS+urlId);
+        }else{
+            leftMenuDatailPresenter.loadLocalData();
+        }
     }
 
     @Override
